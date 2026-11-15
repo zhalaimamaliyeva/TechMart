@@ -67,3 +67,39 @@ Static üzvlər sinfin özünə aid olur və bütün obyektlər üçün ortaqdı
 ### 6.ToString() metodunu override etmək nə deməkdir?
 
 ToString() metodu obyekt haqqında mətn qaytarmaq üçün istifadə olunur. Override etmək isə bu metodun standart davranışını dəyişmək deməkdir.
+
+## Praktiki hissə — TechMart Console Application
+
+Bu tapşırıqda C# və .NET istifadə edərək TechMart adlı Console Application yaratdım. Layihənin məqsədi məhsulların məlumatlarını saxlamaq, onları konsolda göstərmək və yanlış məlumatların daxil edilməsinin qarşısını almaqdır.
+
+### Product sinfi
+
+`Product.cs` faylında `Product` adlı sinif yaratdım. Sinifdə məhsulun ID-si, adı, SKU kodu, qiyməti və stok sayı saxlanılır. Məlumatları qorumaq üçün field-ləri `private`, onlara giriş üçün property-ləri isə `public` olaraq təyin etdim.
+
+Məhsulun adı boş və ya iki simvoldan qısa ola bilməz. Qiymət sıfırdan böyük, stok sayı isə sıfır və ya müsbət olmalıdır. Bu qaydaları property-lərin `set` hissəsində yoxladım. Yanlış dəyər daxil ediləndə exception yaranır.
+
+Constructor vasitəsilə hər məhsul yaradılarkən onun ilkin məlumatları təyin edilir. `static` sayğacdan istifadə edərək məhsullara avtomatik və ardıcıl ID verilir.
+
+`ToString()` metodunu `override` edərək məhsul məlumatlarının konsolda oxunaqlı şəkildə göstərilməsini təmin etdim.
+
+### Test nəticələri
+
+`Program.cs` faylında beş məhsul yaratdım: iPhone 16, Samsung S25, MacBook Air, AirPods Pro və iPad Air. Proqram bütün məhsulları düzgün göstərdi və onlara 1-dən 5-ə qədər ID verdi.
+
+Test 1 — Mənfi qiymət
+
+Qiyməti `-500m` olan məhsul yaratmağa çalışdım. Proqram `ArgumentOutOfRangeException` yaratdı və aşağıdakı mesajı göstərdi:
+
+`Price must be greater than zero. (Parameter 'Price')`
+
+Test 2 — Boş məhsul adı
+
+Adı boş olan məhsul yaratmağa çalışdım. Proqram `ArgumentException` yaratdı və aşağıdakı mesajı göstərdi:
+
+`Product name must have at least 2 characters.`
+
+Hər iki exception `try-catch` vasitəsilə tutuldu. Buna görə proqram dayanmadan testləri icra etdi.
+
+### Nəticə
+
+Bu layihə vasitəsilə C# dilində class, object, field, property, constructor, static, encapsulation, method overriding və exception handling anlayışlarını praktikada tətbiq etdim. Həmçinin .NET Console Application yaratmağı və proqramı terminal vasitəsilə işə salmağı öyrəndim.
