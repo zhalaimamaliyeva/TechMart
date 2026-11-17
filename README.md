@@ -106,8 +106,6 @@ Bu layihə vasitəsilə C# dilində class, object, field, property, constructor,
 
 # Kolleksiyalar, Axın İdarəetməsi və Konsol Menyusu — Stok İdarəetməsi
 
-## Hissə 2
-
 ### ### 1. Array, List, Dictionary və HashSet
 
 C# dilində kolleksiyalar bir neçə məlumatı birlikdə saxlamaq və idarə etmək üçün istifadə olunur. Əsas kolleksiyalara Array, List, Dictionary və HashSet daxildir.
