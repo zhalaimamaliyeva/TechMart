@@ -103,3 +103,87 @@ Hər iki exception `try-catch` vasitəsilə tutuldu. Buna görə proqram dayanma
 ### Nəticə
 
 Bu layihə vasitəsilə C# dilində class, object, field, property, constructor, static, encapsulation, method overriding və exception handling anlayışlarını praktikada tətbiq etdim. Həmçinin .NET Console Application yaratmağı və proqramı terminal vasitəsilə işə salmağı öyrəndim.
+
+# Kolleksiyalar, Axın İdarəetməsi və Konsol Menyusu — Stok İdarəetməsi
+
+## Hissə 2
+
+### ### 1. Array, List, Dictionary və HashSet
+
+C# dilində kolleksiyalar bir neçə məlumatı birlikdə saxlamaq və idarə etmək üçün istifadə olunur. Əsas kolleksiyalara Array, List, Dictionary və HashSet daxildir.
+
+Array eyni tipli elementləri saxlayan, uzunluğu sabit olan strukturdur. Məsələn, TechMart mağazasında əvvəlcədən müəyyən edilmiş məhsul kateqoriyalarını array-də saxlamaq olar. Array-də elementlərə indeks vasitəsilə müraciət edilir.
+
+List<T> ölçüsü dəyişə bilən kolleksiyadır. Ona yeni element əlavə etmək və mövcud elementləri silmək mümkündür. TechMart-da bütün məhsulları `List<Product>` daxilində saxlamaq olar.
+
+Dictionary<TKey, TValue> məlumatları açar və dəyər şəklində saxlayır. Hər açar unikal olmalıdır. Məsələn, məhsulun SKU kodunu açar, məhsul obyektini isə dəyər kimi saxlamaq olar.
+
+HashSet<T> təkrarlanmayan elementləri saxlayan kolleksiyadır. Məsələn, mağazada istifadə olunan SKU kodlarının təkrarlanmamasını yoxlamaq üçün istifadə edilə bilər.
+
+TechMart layihəsində SKU ilə sürətli məhsul axtarışı üçün Dictionary daha uyğundur. Çünki məhsulu SKU açarı vasitəsilə birbaşa tapmaq mümkündür.
+
+### 2. Generic nədir? List<T>-dəki T nə deməkdir?
+
+Generic C# dilində siniflərin və metodların müxtəlif məlumat tipləri ilə işləməsinə imkan verən mexanizmdir.
+
+`List<T>` ifadəsindəki `T` Type, yəni tip mənasını verir. Burada T konkret məlumat tipini təmsil edən yer tutucudur. Məsələn, `List<int>` tam ədədləri, `List<string>` mətnləri, `List<Product>` isə Product obyektlərini saxlamaq üçün istifadə olunur.
+
+TechMart layihəsində məhsulları saxlamaq üçün `List<Product>` istifadə edəcəyəm. Bu siyahıya yalnız Product tipinə uyğun obyektlər əlavə edilə bilər.
+
+Generic-in əsas üstünlüyü kodun müxtəlif tiplərlə təkrar istifadə edilməsini təmin etməsi və tip uyğunsuzluqlarını kompilyasiya zamanı aşkar etməyə kömək etməsidir.
+
+### 3. for, foreach və while dövrləri
+
+C# dilində dövrlər müəyyən əməliyyatları təkrar yerinə yetirmək üçün istifadə olunur. Əsas dövr növlərinə `for`, `foreach` və `while` daxildir.
+
+for dövrü əsasən təkrarların sayını əvvəlcədən bildiyimizdə və ya indekslə işləmək istədiyimizdə istifadə olunur. Məsələn, TechMart mağazasında məhsulları indeks nömrələrinə görə göstərmək üçün `for` dövründən istifadə etmək olar.
+
+foreach dövrü kolleksiyadakı elementləri bir-bir oxumaq üçün istifadə olunur. Bu dövrdə ayrıca indeks dəyişəni yaratmağa ehtiyac yoxdur. TechMart layihəsində bütün məhsulları `List<Product>` kolleksiyasından götürüb ekrana çıxarmaq üçün `foreach` daha rahat seçimdir.
+
+while dövrü müəyyən şərt doğru olduğu müddətdə kodu təkrar icra edir. Təkrarların sayı əvvəlcədən məlum olmadıqda xüsusilə faydalıdır. TechMart layihəsində istifadəçi `0` seçərək proqramdan çıxana qədər konsol menyusunu işlətmək üçün `while` dövründən istifadə edəcəm.
+
+Ümumilikdə, indekslə işləmək üçün `for`, kolleksiya elementlərini oxumaq üçün `foreach`, şərtdən asılı olaraq təkrarlanan əməliyyatlar üçün isə `while` daha uyğun seçimdir.
+
+### 4. if/else və switch arasındakı fərq
+
+C# dilində `if/else` və `switch` proqramın müəyyən şərtlərə əsasən fərqli əməliyyatlar yerinə yetirməsi üçün istifadə olunur.
+
+if/else müxtəlif məntiqi şərtləri yoxlamaq üçün istifadə edilir. Məsələn, TechMart mağazasında məhsulun stokunun sıfır olub-olmadığını və ya müəyyən həddən az olduğunu yoxlamaq üçün `if/else` istifadə etmək olar.
+
+switch isə bir dəyişənin və ya ifadənin müxtəlif dəyərlərinə əsasən seçim etmək üçün istifadə olunur. Məsələn, istifadəçi konsol menyusunda 1, 2, 3 və ya 0 seçdikdə uyğun əməliyyatı yerinə yetirmək üçün `switch` istifadə etmək daha rahatdır.
+
+Əsas fərq odur ki, `if/else` müxtəlif və mürəkkəb şərtləri yoxlamaq üçün daha çevikdir, `switch` isə bir ifadənin çoxsaylı mümkün dəyərlərinə əsasən seçim etmək lazım olduqda kodu daha oxunaqlı edə bilər.
+
+TechMart layihəsində stok miqdarını yoxlamaq üçün `if/else`, konsol menyusunda istifadəçinin seçiminə uyğun əməliyyatı müəyyən etmək üçün isə `switch` istifadə edəcəm.
+
+### 5. int.Parse və int.TryParse arasındakı fərq
+
+C# dilində `int.Parse()` və `int.TryParse()` metodları mətn tipində olan məlumatı tam ədədə çevirmək üçün istifadə olunur.
+
+int.Parse() verilmiş mətni tam ədədə çevirir. Əgər daxil edilən məlumat düzgün formatda deyilsə, məsələn, istifadəçi rəqəm əvəzinə hərf yazarsa, `FormatException` yarana bilər. Bu xəta idarə olunmasa, proqram dayana bilər.
+
+int.TryParse() isə mətni tam ədədə çevirməyə çalışır. Çevirmə uğurlu olduqda `true`, uğursuz olduqda isə `false` qaytarır. Yanlış formatda məlumat daxil edildikdə proqramın çökməsinin qarşısını almağa kömək edir.
+
+TechMart layihəsində istifadəçi konsol menyusundan seçim edərkən `int.TryParse()` istifadə edəcəm. Çünki istifadəçi rəqəm əvəzinə hərf və ya boş məlumat daxil edə bilər. Bu halda proqram xəta mesajı göstərərək istifadəçidən yenidən düzgün məlumat daxil etməsini istəyəcək.
+
+Bundan əlavə, daxil edilən ədədin menyuda mövcud olub-olmadığını da ayrıca yoxlamaq lazımdır.
+
+Bu səbəbdən istifadəçi daxiletməsi üçün `int.TryParse()` daha təhlükəsiz və əlverişli seçimdir.
+
+### 6. String metodları: Trim, ToLower, Contains və Equals
+
+C# dilində string metodları mətn məlumatlarını emal etmək və müqayisə etmək üçün istifadə olunur. TechMart layihəsində bu metodlar məhsul adlarını və SKU kodlarını düzgün axtarmağa kömək edir.
+
+Trim() mətnin əvvəlində və sonunda olan artıq boşluqları silir. Məsələn, istifadəçi məhsulun adını `"  iPhone 16  "` şəklində daxil edərsə, `Trim()` vasitəsilə kənardakı boşluqları təmizləmək mümkündür.
+
+ToLower() mətndəki böyük hərfləri kiçik hərflərə çevirir. Bu metod mətnləri eyni hərf formasına gətirmək üçün istifadə edilə bilər.
+
+Contains() bir mətnin daxilində başqa mətnin olub-olmadığını yoxlayır və `true` və ya `false` qaytarır. Məsələn, istifadəçi `"phone"` yazdıqda `"iPhone 16 Pro"` məhsulunu tapmaq üçün istifadə oluna bilər.
+
+Equals() iki mətnin bərabər olub-olmadığını yoxlayır. TechMart layihəsində məhsulların SKU kodlarını müqayisə etmək üçün istifadə edilə bilər.
+
+Böyük-kiçik hərfləri nəzərə almadan müqayisə aparmaq üçün `StringComparison.OrdinalIgnoreCase` istifadə etmək mümkündür. Məsələn, bu üsulla `"IPH016"` və `"iph016"` eyni SKU kodu kimi qəbul edilə bilər.
+
+Bu metodlar məhsul axtarışında vacibdir. Çünki istifadəçilər məhsul adlarını fərqli hərf formalarında və əlavə boşluqlarla daxil edə bilərlər. Məqsəd istifadəçinin tam və dəqiq yazılışdan asılı olmadan istədiyi məhsulu tapa bilməsidir.
+
+TechMart layihəsində məhsul adının bir hissəsinə görə axtarış üçün `Contains()` və `StringComparison.OrdinalIgnoreCase`, SKU müqayisəsi üçün isə böyük-kiçik hərfdən asılı olmayan müqayisə istifadə edəcəm.
