@@ -185,3 +185,57 @@ Böyük-kiçik hərfləri nəzərə almadan müqayisə aparmaq üçün `StringCo
 Bu metodlar məhsul axtarışında vacibdir. Çünki istifadəçilər məhsul adlarını fərqli hərf formalarında və əlavə boşluqlarla daxil edə bilərlər. Məqsəd istifadəçinin tam və dəqiq yazılışdan asılı olmadan istədiyi məhsulu tapa bilməsidir.
 
 TechMart layihəsində məhsul adının bir hissəsinə görə axtarış üçün `Contains()` və `StringComparison.OrdinalIgnoreCase`, SKU müqayisəsi üçün isə böyük-kiçik hərfdən asılı olmayan müqayisə istifadə edəcəm.
+
+
+## BE-CS-002: Test Ssenariləri
+
+TechMart stok idarəetmə sisteminin düzgün işləməsini
+yoxlamaq üçün həm düzgün, həm də yanlış məlumatlarla
+testlər aparılmışdır.
+
+Testlərin əsas məqsədi proqramın müxtəlif vəziyyətlərdə
+necə davrandığını, səhv məlumatları necə idarə etdiyini
+və stok əməliyyatlarının düzgün yerinə yetirilib-yetirilmədiyini
+yoxlamaqdır.
+
+### Test Nəticələri
+
+| № | Test ssenarisi | Gözlənilən nəticə | Faktiki nəticə | Status |
+|---|---|---|---|---|
+| 1 | Bütün məhsulların göstərilməsi | 10 məhsul göstərilməlidir | 10 məhsul göstərildi | Uğurlu |
+| 2 | Yeni məhsulun əlavə edilməsi | Məhsul uğurla əlavə edilməlidir | Məhsul əlavə edildi | Uğurlu |
+| 3 | Təkrarlanan SKU ilə məhsul əlavə edilməsi | Xəta mesajı göstərilməlidir | Xəta mesajı göstərildi | Uğurlu |
+| 4 | Mənfi qiymətin daxil edilməsi | Mənfi qiymət qəbul edilməməlidir | Qiymət qəbul edilmədi | Uğurlu |
+| 5 | Mənfi stok miqdarının daxil edilməsi | Mənfi stok qəbul edilməməlidir | Stok qəbul edilmədi | Uğurlu |
+| 6 | ID ilə məhsul axtarışı | iPhone 16 tapılmalıdır | Məhsul tapıldı | Uğurlu |
+| 7 | Kiçik hərflərlə SKU axtarışı | MacBook Air tapılmalıdır | Məhsul tapıldı | Uğurlu |
+| 8 | Adın bir hissəsi ilə axtarış | Uyğun məhsullar tapılmalıdır | 3 məhsul tapıldı | Uğurlu |
+| 9 | Mövcud olmayan ID ilə axtarış | Məhsulun tapılmadığı bildirilməlidir | Müvafiq mesaj göstərildi | Uğurlu |
+| 10 | Stok miqdarının artırılması | Stok 12-dən 17-yə yüksəlməlidir | Stok 17 oldu | Uğurlu |
+| 11 | Stok miqdarının azaldılması | Stok 17-dən 14-ə düşməlidir | Stok 14 oldu | Uğurlu |
+| 12 | Mövcud stokdan artıq məhsul çıxarılması | Əməliyyat rədd edilməlidir | Xəta mesajı göstərildi | Uğurlu |
+| 13 | Az stoklu məhsulların göstərilməsi | Həddən az stoku olan məhsullar göstərilməlidir | Uyğun məhsullar göstərildi | Uğurlu |
+| 14 | Menyuya yanlış məlumat daxil edilməsi | Xəta göstərilib menyu yenidən açılmalıdır | Menyu yenidən açıldı | Uğurlu |
+| 15 | Məhsulun ID və SKU üzrə silinməsi | Məhsul hər iki kolleksiyadan silinməlidir | Məhsul hər iki kolleksiyadan silindi | Uğurlu |
+### Testlərin Ümumi Nəticəsi
+
+- Ümumi test sayı: 15
+- Uğurlu testlər: 15
+- Uğursuz testlər: 0
+
+### Nəticə
+
+Aparılan 15 testin hamısı uğurla tamamlanmışdır.
+
+Testlər nəticəsində müəyyən edilmişdir ki:
+
+- Proqram məhsulları düzgün şəkildə göstərir və əlavə edir.
+- Eyni SKU kodu ilə ikinci məhsulun əlavə edilməsinə icazə verilmir.
+- Məhsulları ID, SKU və adlarına görə axtarmaq mümkündür.
+- Böyük və kiçik hərflərdən asılı olmayaraq SKU və ad üzrə axtarış işləyir.
+- Stok miqdarını artırmaq və azaltmaq mümkündür.
+- Mövcud stokdan artıq məhsul çıxarılmasının qarşısı alınır.
+- Yanlış məlumat daxil edildikdə proqram dayanmaq əvəzinə xəta mesajı göstərir.
+
+Beləliklə, aparılmış testlər TechMart proqramının
+əsas funksiyalarının düzgün işlədiyini göstərir.

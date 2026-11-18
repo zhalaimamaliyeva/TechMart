@@ -19,19 +19,32 @@ public class Product
         get { return name; }
         set
         {
-            if (string.IsNullOrWhiteSpace(value) || value.Trim().Length < 2)
+            if (string.IsNullOrWhiteSpace(value) ||
+                value.Trim().Length < 2)
             {
-                throw new ArgumentException("Product name must have at least 2 characters.");
+                throw new ArgumentException(
+                    "Product name must have at least 2 characters."
+                );
             }
 
-            name = value;
+            name = value.Trim();
         }
     }
 
     public string Sku
     {
         get { return sku; }
-        set { sku = value; }
+        private set
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException(
+                    "SKU cannot be empty."
+                );
+            }
+
+            sku = value.Trim();
+        }
     }
 
     public decimal Price
@@ -41,7 +54,10 @@ public class Product
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(Price), "Price must be greater than zero.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(Price),
+                    "Price must be greater than zero."
+                );
             }
 
             price = value;
@@ -55,14 +71,21 @@ public class Product
         {
             if (value < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(StockQuantity), "Stock quantity cannot be negative.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(StockQuantity),
+                    "Stock quantity cannot be negative."
+                );
             }
 
             stockQuantity = value;
         }
     }
 
-    public Product(string name, string sku, decimal price, int stockQuantity)
+    public Product(
+        string name,
+        string sku,
+        decimal price,
+        int stockQuantity)
     {
         Name = name;
         Sku = sku;
@@ -72,9 +95,9 @@ public class Product
         id = nextId;
         nextId++;
     }
-    public override string ToString()
-{
-    return $"ID: {Id} | Name: {Name} | SKU: {Sku} | Price: {Price} AZN | Stock: {StockQuantity}";
-}
-}
 
+    public override string ToString()
+    {
+        return $"ID: {Id} | Name: {Name} | SKU: {Sku} | Price: {Price} AZN | Stock: {StockQuantity}";
+    }
+}

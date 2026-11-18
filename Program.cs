@@ -1,39 +1,21 @@
 ﻿
 Console.WriteLine("Welcome to TechMart!");
-Console.WriteLine("--------------------");
 
-Product product1 = new Product("iPhone 16", "IPH016", 1800m, 12);
-Product product2 = new Product("Samsung S25", "SAM025", 2100m, 8);
-Product product3 = new Product("MacBook Air", "MAC001", 2500m, 5);
-Product product4 = new Product("AirPods Pro", "AIR002", 450m, 20);
-Product product5 = new Product("iPad Air", "IPD003", 1300m,10);
+Inventory inventory = new Inventory();
 
-Console.WriteLine(product1);
-Console.WriteLine(product2);
-Console.WriteLine(product3);
-Console.WriteLine(product4);
-Console.WriteLine(product5);
+// Add sample products
+inventory.AddProduct(new Product("iPhone 16", "IPH016", 1800m, 12));
+inventory.AddProduct(new Product("Samsung S25", "SAM025", 2100m, 8));
+inventory.AddProduct(new Product("MacBook Air", "MAC001", 2500m, 5));
+inventory.AddProduct(new Product("AirPods Pro", "AIR002", 450m, 20));
+inventory.AddProduct(new Product("iPad Air", "IPD003", 1300m, 10));
+inventory.AddProduct(new Product("USB-C Adapter", "USB001", 35m, 3));
+inventory.AddProduct(new Product("Charging Cable", "CBL001", 20m, 15));
+inventory.AddProduct(new Product("Wireless Mouse", "MOU001", 60m, 7));
+inventory.AddProduct(new Product("Keyboard", "KEY001", 90m, 4));
+inventory.AddProduct(new Product("Power Bank", "PWB001", 75m, 9));
 
-Console.WriteLine("=== Validation tests ===");
+// Start console menu
+ConsoleMenu menu = new ConsoleMenu(inventory);
 
-// Test 1: Negative price
-try
-{
-    Product invalidProduct1 = new Product("Laptop", "LAP001", -500m, 5);
-}
-catch (ArgumentOutOfRangeException ex)
-{
-    Console.WriteLine("Test 1 - Negative price:");
-    Console.WriteLine(ex.Message);
-}
-
-// Test 2: Empty name
-try
-{
-    Product invalidProduct2 = new Product("", "PHN001", 1000m, 3);
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine("Test 2 - Empty name:");
-    Console.WriteLine(ex.Message);
-}
+menu.Run();
